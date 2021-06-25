@@ -52,7 +52,8 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
     * Print String ( With our new font )  
     * Change Resolution  
     * PCI  
-    * Transfer to test Kernel and Exit Boot Services  
+    * Transfer to test Kernel and Exit Boot Services 
+    * File Write to disk	
 	* Format and Partition drive with the EFI Environment
 	* Operating System Installation with just the EFI Environment  
 
