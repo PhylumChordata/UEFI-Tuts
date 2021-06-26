@@ -126,21 +126,21 @@ GRAPHICSBUFFER         gBuffer;
 void CreateBufferFilledBox(UINT32 xPos, UINT32 yPos, UINT32 w, UINT32 h)
 {
     // This functions puts a color filled box on the screen
-    UINT32 BBP = 4;
+    UINT32 ByteOffset = 4;
     if(xPos < 0){xPos = 0;}
     if(yPos < 0){yPos = 0;}
     if(w < 1){w = 1;}
     if(h < 1){h = 1;}
     UINT32 x;
     UINT32 y      = yPos;
-    UINT32 width  = (xPos + w) * BBP;
+    UINT32 width  = (xPos + w) * ByteOffset;
     UINT32 height = yPos + h;
 
     for(y = yPos; y <= height; y++)
     {
-        for(x = xPos * BBP; x <= width; x+=BBP)
+        for(x = xPos * ByteOffset; x <= width; x+=ByteOffset)
         {
-            *(UINT32*)(x + (y * gBuffer.PixelsPerScanLine * BBP) + gBuffer.BaseAddress) = *(UINT32*)&GraphicsColor;
+            *(UINT32*)(x + (y * gBuffer.PixelsPerScanLine * ByteOffset) + gBuffer.BaseAddress) = *(UINT32*)&GraphicsColor;
         }
     }
 }

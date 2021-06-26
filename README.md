@@ -50,6 +50,7 @@
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
     * File Write to disk	
+    * Get File Info	
 	* Query Supported Resolutions
     * Change Resolution  
     * Print String ( With our new font )  

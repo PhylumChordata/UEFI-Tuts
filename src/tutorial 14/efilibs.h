@@ -233,11 +233,11 @@ void readFile(CHAR16* FileName)
     {
         SetColor(EFI_BROWN);
         Print(L"AllocatingPool ... ");
-        EFI_STATUS Status = SystemTable->BootServices->AllocatePool(EfiLoaderData, 0x00100000, (void**)&OSBuffer_Handle);
+        EFI_STATUS Status = SystemTable->BootServices->AllocatePool(EfiLoaderData, 0x00001000, (void**)&OSBuffer_Handle);
         SetColor(EFI_CYAN);
         Print(CheckStandardEFIError(Status));
     
-        UINT64 fileSize = 0x00100000;
+        UINT64 fileSize = 0x00001000;
         
         SetColor(EFI_BROWN);
         Print(L"Reading File ... ");

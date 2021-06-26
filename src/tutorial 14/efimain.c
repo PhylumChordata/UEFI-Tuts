@@ -23,7 +23,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 
     HitAnyKey();
     
-            // Kernel stuff here
+            // File stuff here
 
     InitializeFILESYSTEM();
     
@@ -32,9 +32,10 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     EFI_FILE_PROTOCOL* efimyfile = openFile(L"myfile.bin");
 
     UINT64 fsize = 0x00001000;
-
     EFI_STATUS Status = SystemTable->BootServices->AllocatePool(EfiLoaderData, fsize, (void**)&ExternalFileBuffer);
+	SetColor(EFI_BROWN);
     Print(L"AllocatePool ExternalFileBuffer");
+	SetColor(EFI_LIGHTCYAN);  
     Print(CheckStandardEFIError(Status));
 
     efimyfile->SetPosition(efimyfile, 0);
@@ -42,6 +43,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     efimyfile->Read(efimyfile, &fsize, ExternalFileBuffer);
     SetColor(EFI_GREEN);
     Print(L"\r\nRead ExternalFileBuffer");
+	SetColor(EFI_LIGHTCYAN);  
     Print(CheckStandardEFIError(Status));
 
     SetColor(EFI_LIGHTCYAN);    
@@ -66,6 +68,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     efimyfile->Read(efimyfile, &fsize, ExternalFileBuffer);
     SetColor(EFI_GREEN);
     Print(L"Read ExternalFileBuffer");
+	SetColor(EFI_YELLOW);
     Print(CheckStandardEFIError(Status));
     
     closeFile(efimyfile);
@@ -84,12 +87,12 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
         test2++;
     }
 
-    SetColor(EFI_LIGHTCYAN);
     int (*KernelBinFile)() = ((__attribute__((ms_abi)) int (*)() ) (UINT8*)ExternalFileBuffer);
     int g = KernelBinFile();
     
     UINT16 tmp[8];
     itoa(g, tmp, 10);
+	SetColor(EFI_LIGHTCYAN);
     Print(L"\r\n\r\nThe returned number is : ");
     SetColor(EFI_LIGHTMAGENTA);
     Print(tmp);
