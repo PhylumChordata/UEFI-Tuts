@@ -28,7 +28,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     // Writing to a file
 	InitializeFILESYSTEM();
 	
-    WriteToFile("Hello World", u"test.txt");
+    WriteToFile("This is our file.\nWelcome youtubers !!!", u"test.txt");
 
     SetColor(EFI_GREEN);
     SetTextPosition(8, 10);
