@@ -28,21 +28,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     // Writing to a file
 	InitializeFILESYSTEM();
 	
-	char* testbuffer = "Hello World";
-	
-	EFI_FILE_PROTOCOL* writefilehandle = createFile(L"test.txt");
-	if(writefilehandle != NULL)
-	{
-		UINT64 fileSize = 11; // 0x0000000B;
-		
-		SetColor(EFI_BROWN);
-		Print(L"Writing to File ... ");
-		EFI_STATUS Status = writefilehandle->Write(writefilehandle, &fileSize, testbuffer);
-		SetColor(EFI_CYAN);
-		Print(CheckStandardEFIError(Status));
-
-		closeFile(writefilehandle);
-	}
+    WriteToFile("Hello World", u"test.txt");
 
     SetColor(EFI_GREEN);
     SetTextPosition(8, 10);

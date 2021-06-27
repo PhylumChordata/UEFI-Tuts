@@ -33,6 +33,14 @@ void itoa(unsigned long int n, CHAR16 *buffer, int basenumber)
 typedef unsigned long long     size_t;
 typedef unsigned char          uint8_t;
 
+size_t strlen(const char *str)
+{
+	const char *strCount = str;
+
+	while (*strCount++);
+	return strCount - str - 1;
+}
+
 void* memcpy(void* dst, const void* src, size_t size)
 {
     for ( size_t i = 0; i < size; i++ )

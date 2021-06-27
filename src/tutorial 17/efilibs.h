@@ -309,6 +309,22 @@ void readFile(CHAR16* FileName)
     }
 }
 
+void WriteToFile(char* buf, CHAR16* FileName)
+{
+	UINT64 fileSize = strlen(buf);
+	EFI_FILE_PROTOCOL* writefilehandle = createFile(FileName);
+	if(writefilehandle != NULL)
+	{
+        SetColor(EFI_BROWN);
+		Print(L"Writing to File ... ");
+		EFI_STATUS Status = writefilehandle->Write(writefilehandle, &fileSize, buf);
+		SetColor(EFI_CYAN);
+		Print(CheckStandardEFIError(Status));
+
+		closeFile(writefilehandle);
+	}
+}
+
 typedef struct PIXELPOSITIONS
 {
     UINT32 PixelxPos;
