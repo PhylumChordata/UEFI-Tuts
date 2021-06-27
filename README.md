@@ -50,13 +50,15 @@
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
-    * Get File Info	
-	* Query Supported Resolutions
+    * Get File Info	 
+	* Query Supported Resolutions  
     * Change Resolution  
+	* Reading Raw Sectors from Drive  
+	* Writing Raw Sectors to Drive  
     * Print String ( With our new font )  
     * PCI  
-    * Transfer to test Kernel and Exit Boot Services 
-	* Format and Partition drive with the EFI Environment
+    * Transfer to test Kernel and Exit Boot Services  
+	* Format and Partition drive with the EFI Environment  
 	* Operating System Installation with just the EFI Environment  
 
 ![Current Progress](progress.png)  
