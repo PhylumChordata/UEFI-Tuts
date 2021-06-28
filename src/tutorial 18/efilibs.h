@@ -240,7 +240,7 @@ EFI_FILE_PROTOCOL* getFile(CHAR16* FileName)
     SetColor(EFI_BROWN);
     Print(L"Getting File Handle ... ");
     EFI_FILE_PROTOCOL* FileHandle = NULL;
-    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, FileName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
+    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, FileName, EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
     SetColor(EFI_CYAN);
 	if(Status == EFI_NOT_FOUND)
 	{
