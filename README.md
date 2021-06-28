@@ -48,10 +48,10 @@
 	- GRAPHICS OUTPUT 2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 20](https://www.youtube.com/watch?v=pYF0vlCDITc)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2016)
 	- CREATE & WRITE TO FILE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 21](https://www.youtube.com/watch?v=_It1OboMmtw)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2017)
 	- CREATE & DELETE FOLDER &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 22](https://www.youtube.com/watch?v=mDc_KtOQPas)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2018)
+	- GET FILE SIZE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [Comming Soon...]  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2019)
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
-    * Get File Info	 
 	* Query Supported Resolutions  
     * Change Resolution  
 	* Reading Raw Sectors from Drive  
@@ -59,6 +59,7 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
     * Print String ( With our new font )  
     * PCI  
     * Transfer to test Kernel and Exit Boot Services  
+	* Get File Info	 
 	* Format and Partition drive with the EFI Environment  
 	* Operating System Installation with just the EFI Environment  
 
