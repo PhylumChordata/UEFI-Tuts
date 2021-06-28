@@ -28,7 +28,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	
 	makeDir(u"MyTest");
 	
-    WriteToFile("TEsting", u"MyTest\\test.txt");
+    WriteToFile("So hello there youtubers !!", u"MyTest\\test.txt");
 	
 	readFile(u"MyTest\\test.txt");
 	
