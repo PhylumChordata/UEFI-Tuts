@@ -19,7 +19,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     
     SetColor(EFI_GREEN);
     SetTextPosition(8, 4);
-    Print(L"Hit Any Key to get File Info\r\n");
+    Print(L"Hit Any Key to get File Size\r\n");
 
     HitAnyKey();
 

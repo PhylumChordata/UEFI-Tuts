@@ -1,6 +1,7 @@
 # Makefile
 CC        :=gcc
-CFLAGS    :=-Wall -Werror -m64 -mabi=ms
+CFLAGS    :=-Wall -Werror -m64 -mabi=ms -ffreestanding
+LFLAGS    :=-Wall -Werror -m64 -mabi=ms -nostdlib -shared -Wl,-dll -Wl,--subsystem,10 -e efi_main
 UNAME_S   :=$(shell uname -s)
 
 ifeq ($(UNAME_S),Darwin)
@@ -10,20 +11,17 @@ ifeq ($(UNAME_S),Linux)
 CC        :=x86_64-w64-mingw32-gcc
 endif
 
-all: BOOTX64.EFI myfile.bin
+all: BOOTX64.EFI
 
 %.o: %.c
-	$(CC) $(CFLAGS) -ffreestanding -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 BOOTX64.EFI: efimain.o
-	$(CC) $(CFLAGS) -nostdlib -shared -Wl,-dll -Wl,--subsystem,10 -e efi_main $^ -o $@
-
-myfile.bin: kernel/kernel.c
-	$(CC) $(CFLAGS) -Wl,--oformat=binary -e main -c $< -o $@
+	$(CC) $^ $(LFLAGS) -o $@
 
 clean:
 	@echo "Cleaning files...."
-	rm -f *.o *.EFI *.bin
+	rm -f *.o *.EFI
 	@echo "Done."
 
 .PHONY: clean
