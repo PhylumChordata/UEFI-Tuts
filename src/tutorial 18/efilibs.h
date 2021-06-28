@@ -232,29 +232,35 @@ void InitializeFILESYSTEM()
     Print(CheckStandardEFIError(Status));
 }
 
-EFI_FILE_PROTOCOL* openFile(CHAR16* FileName)
+EFI_FILE_PROTOCOL* getFile(CHAR16* FileName)
 {
     // This opens a file from the EFI FAT32 file system volume.
     // It loads from root, so you must supply full path if the file is not in the root.
     // Example : "somefolder//myfile"  <--- Notice the double forward slash.
     SetColor(EFI_BROWN);
-    Print(L"Opening File ... ");
+    Print(L"Getting File Handle ... ");
     EFI_FILE_PROTOCOL* FileHandle = NULL;
     EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, FileName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
     SetColor(EFI_CYAN);
-    Print(CheckStandardEFIError(Status));
+	if(Status == EFI_NOT_FOUND)
+	{
+		Print(L"\r\nWARNING : Unable to find File.\r\n\r\n");
+	}
     
     return FileHandle;
 }
 
-EFI_FILE_PROTOCOL* GetDir(CHAR16* DirName)
+EFI_FILE_PROTOCOL* getDir(CHAR16* DirName)
 {
     SetColor(EFI_BROWN);
-    Print(L"Opening Directory ... ");
+    Print(L"Opening Directory Handle ... ");
     EFI_FILE_PROTOCOL* FileHandle = NULL;
-    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, DirName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, EFI_FILE_DIRECTORY);
+    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, DirName, EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, EFI_FILE_DIRECTORY);
     SetColor(EFI_CYAN);
-    Print(CheckStandardEFIError(Status));
+	if(Status == EFI_NOT_FOUND)
+	{
+		Print(L"\r\nWARNING : Unable to find Directory.\r\n\r\n");
+	}
     
     return FileHandle;
 }
@@ -263,7 +269,7 @@ void closeFile(EFI_FILE_PROTOCOL* FileHandle)
 {
     // This closes the file.
     SetColor(EFI_BROWN);
-    Print(L"Closing File ... ");
+    Print(L"Closing File Handle ... ");
     EFI_STATUS Status = FileHandle->Close(FileHandle);
     SetColor(EFI_CYAN);
     Print(CheckStandardEFIError(Status));
@@ -278,13 +284,28 @@ void closeDir(EFI_FILE_PROTOCOL* FileHandle)
     Print(CheckStandardEFIError(Status));
 }
 
+EFI_FILE_PROTOCOL* createFile(CHAR16* FileName)
+{
+    SetColor(EFI_BROWN);
+    Print(L"Creating File Handle ... ");
+    EFI_FILE_PROTOCOL* FileHandle = NULL;
+    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, FileName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
+    SetColor(EFI_CYAN);
+	if(Status == EFI_NOT_FOUND)
+	{
+		Print(L"\r\nWARNING : Unable to create file. Please check your path.\r\n\r\n");
+	}
+    
+    return FileHandle;
+}
+
 void readFile(CHAR16* FileName)
 {
     // We create the buffer, allocate memory for it, then read
     // the rile into the buffer. After which, we close the file.
 	// Currently we are using a fixed size. Eventually we will fix that.
 	// Currently we have a fixed Buffer Handle as well. Eventually we will fixe that.
-    EFI_FILE_PROTOCOL* mytextfile = openFile(FileName);
+    EFI_FILE_PROTOCOL* mytextfile = getFile(FileName);
     if(mytextfile != NULL)
     {
         SetColor(EFI_BROWN);
@@ -307,7 +328,7 @@ void readFile(CHAR16* FileName)
 
 void removeDir(CHAR16* dirName)
 {
-	EFI_FILE_PROTOCOL* FileHandle = GetDir(dirName);
+	EFI_FILE_PROTOCOL* FileHandle = getDir(dirName);
 	if(FileHandle != NULL)
 	{
 		SetColor(EFI_BROWN);
@@ -321,8 +342,9 @@ void removeDir(CHAR16* dirName)
 void makeDir(CHAR16* dirName)
 {
     SetColor(EFI_BROWN);
-    Print(L"Creating Directory ... ");
+    Print(L"Creating Directory Handle ... ");
     EFI_FILE_PROTOCOL* FileHandle = NULL;
+	Print(L"Creating Directory ... ");
     EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, dirName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, EFI_FILE_DIRECTORY);
     SetColor(EFI_CYAN);
     Print(CheckStandardEFIError(Status));
@@ -331,7 +353,7 @@ void makeDir(CHAR16* dirName)
 
 void deleteFile(CHAR16* FileName)
 {
-	EFI_FILE_PROTOCOL* FileHandle = openFile(FileName);
+	EFI_FILE_PROTOCOL* FileHandle = getFile(FileName);
 	if(FileHandle != NULL)
 	{
 		SetColor(EFI_BROWN);
@@ -340,22 +362,6 @@ void deleteFile(CHAR16* FileName)
 		SetColor(EFI_CYAN);
 		Print(CheckStandardEFIError(Status));
 	}
-}
-
-EFI_FILE_PROTOCOL* createFile(CHAR16* FileName)
-{
-    SetColor(EFI_BROWN);
-    Print(L"Creating File ... ");
-    EFI_FILE_PROTOCOL* FileHandle = NULL;
-    EFI_STATUS Status = RootFS->Open(RootFS, &FileHandle, FileName, EFI_FILE_MODE_CREATE | EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
-    SetColor(EFI_CYAN);
-    Print(CheckStandardEFIError(Status));
-	if(Status == EFI_NOT_FOUND)
-	{
-		Print(L"\r\nWARNING : Unable to create file. Please check your path.\r\n\r\n");
-	}
-    
-    return FileHandle;
 }
 
 void WriteToFile(char* buf, CHAR16* FileName)
