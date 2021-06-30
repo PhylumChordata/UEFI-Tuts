@@ -57,6 +57,7 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
 
 	* Query Supported Resolutions  
     * Change Resolution  
+	* ExitBootServices  
 	* Reading Raw Sectors from Drive  
 	* Writing Raw Sectors to Drive  
     * Print String Part 2  
