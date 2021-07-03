@@ -1,17 +1,10 @@
 // Operating System from Scratch Tutorials - ThatOSDev ( 2021 )
-// https://github.com/ThatOSDev/ThatOS64
+// https://github.com/ThatOSDev/UEFI-Tuts
 
 #include "stdint.h"
 
              // ARGB             
 #define ORANGE 0xffffa500
-#define CYAN   0xff00ffff
-#define RED    0xffff0000
-#define GREEN  0xff00ff00
-#define BLUE   0xff0000ff
-#define GRAY   0xff888888
-#define WHITE  0xffffffff
-#define BLACK  0xff000000
 
 typedef struct GRAPHICS_COLOR_PIXEL
 {
@@ -31,11 +24,8 @@ typedef struct BLOCKINFO
     unsigned int         PixelsPerScanLine;
 } BLOCKINFO;
 
-// Forward declare
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 
-//int main()
-//int main(int argc)
 int main(int argc, BLOCKINFO* bi)
 {
 	BLOCKINFO* biStruct = bi;

@@ -1,7 +1,7 @@
 // UEFI From Scratch Tutorials - ThatOSDev ( 2021 )
 // https://github.com/ThatOSDev/UEFI-Tuts
 
-#include <string.h>
+// #include <string.h>
 #include <stdint.h>
 
              // ARGB             
@@ -24,6 +24,7 @@ typedef struct GRAPHICS_COLOR_PIXEL
 
 // Forward declare
 GRAPHICS_COLOR_PIXEL SetGraphicsColor(uint32_t color);
+void* memcpy(void* dst, const void* src, unsigned long long size);
 
 //int main()
 //int main(int argc)
@@ -44,6 +45,13 @@ int main(int argc, char* argv[])
 	} else {
         return 7777;
 	}
+}
+
+void* memcpy(void* dst, const void* src, unsigned long long size)
+{
+    for ( unsigned long long i = 0; i < size; i++ )
+        ((unsigned char*) dst)[i] = ((const unsigned char*) src)[i];
+    return dst;
 }
 
 GRAPHICS_COLOR_PIXEL SetGraphicsColor(uint32_t color)

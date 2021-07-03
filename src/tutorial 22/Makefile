@@ -19,11 +19,11 @@ BOOTX64.EFI: efimain.o
 	$(CC) $(CFLAGS) -nostdlib -shared -Wl,-dll -Wl,--subsystem,10 -e efi_main $^ -o $@
 
 loader.bin: loader/loader.c
-	$(CC) $(CFLAGS) -Wl,--oformat=binary -e main -c $< -o loader/$@
+	$(CC) $(CFLAGS) -ffreestanding -Wl,--oformat=binary -e main -c $< -o loader/$@
 
 clean:
 	@echo "Cleaning files...."
-	rm -f *.o *.EFI *.bin
+	rm -f *.o *.EFI *.bin loader/*.bin
 	@echo "Done."
 
 .PHONY: clean
