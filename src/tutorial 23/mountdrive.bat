@@ -1,6 +1,6 @@
 OSFMount -a -t file -f ..\..\drive\drive.hdd -s 40M -o rw -m F:
 
-move /y BOOTX64.EFI "F:\EFI\Boot\"
+copy /y BOOTX64.EFI "F:\EFI\Boot\"
 
 move /y loader\loader.bin "F:\ThatOS64\"
 

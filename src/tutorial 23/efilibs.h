@@ -293,14 +293,6 @@ void WriteToFile(char* buf, CHAR16* FileName)
 	}
 }
 
-typedef struct PIXELPOSITIONS
-{
-    UINT32 PixelxPos;
-    UINT32 PixelyPos;
-} PIXELPOSITIONS;
-
-PIXELPOSITIONS* pixelpos;
-
 void InitializeGOP()
 {
     // We initialize the Graphics Output Protocol.
