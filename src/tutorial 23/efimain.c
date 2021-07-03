@@ -4,6 +4,27 @@
 #include "efi.h"
 #include "efilibs.h"
 
+void itoa(unsigned long int n, unsigned short int* buffer, int basenumber)
+{
+	unsigned long int hold;
+	int i, j;
+	hold = n;
+	i = 0;
+	
+	do{
+		hold = n % basenumber;
+		buffer[i++] = (hold < 10) ? (hold + '0') : (hold + 'a' - 10);
+	} while(n /= basenumber);
+	buffer[i--] = 0;
+	
+	for(j = 0; j < i; j++, i--)
+	{
+		hold = buffer[j];
+		buffer[j] = buffer[i];
+		buffer[i] = hold;
+	}
+}
+
 EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 {
     ImageHandle = IH;
@@ -21,6 +42,9 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	
 	bi.MagicNumber = 3456;
+	
+	// TODO : Setup and grab address of memory MAP
+	
 	/*
     UINTN                  MemoryMapSize = 0;
     EFI_MEMORY_DESCRIPTOR  *MemoryMap;
@@ -34,6 +58,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     SystemTable->BootServices->GetMemoryMap(&MemoryMapSize, MemoryMap, &MapKey, &DescriptorSize, &DescriptorVersion);
     SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
 	*/
+	
     int (*KernelBinFile)(BLOCKINFO*, void*) = ((__attribute__((ms_abi)) int (*)(BLOCKINFO*, void*) ) &loader[262]);
     int g = KernelBinFile(&bi, 0);
     
@@ -69,7 +94,6 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 
 	}
 
-    // We should not make it to this point.
     COLD_REBOOT();
 
     // We should not make it to this point.
