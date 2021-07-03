@@ -2,7 +2,6 @@
 // https://github.com/ThatOSDev/UEFI-Tuts
 
 #include "efi.h"
-#include "ErrorCodes.h"
 #include "efilibs.h"
 
 EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
