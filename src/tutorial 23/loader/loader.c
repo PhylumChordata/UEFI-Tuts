@@ -36,7 +36,7 @@ GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 
 //int main()
 //int main(int argc)
-int main(void* bi, void* arg)
+int main(int argc, BLOCKINFO* bi)
 {
 	BLOCKINFO* biStruct = bi;
 	GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);

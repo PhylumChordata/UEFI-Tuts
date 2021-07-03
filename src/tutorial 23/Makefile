@@ -10,7 +10,7 @@ ifeq ($(UNAME_S),Linux)
 CC        :=x86_64-w64-mingw32-gcc
 endif
 
-all: BOOTX64.EFI myfile.bin
+all: BOOTX64.EFI loader.bin
 
 %.o: %.c
 	$(CC) $(CFLAGS) -ffreestanding -c $< -o $@
@@ -18,8 +18,8 @@ all: BOOTX64.EFI myfile.bin
 BOOTX64.EFI: efimain.o
 	$(CC) $(CFLAGS) -nostdlib -shared -Wl,-dll -Wl,--subsystem,10 -e efi_main $^ -o $@
 
-myfile.bin: kernel/kernel.c
-	$(CC) $(CFLAGS) -Wl,--oformat=binary -e main -c $< -o $@
+loader.bin: loader/loader.c
+	$(CC) $(CFLAGS) -ffreestanding -Wl,--oformat=binary -e main -c $< -o loader/$@
 
 clean:
 	@echo "Cleaning files...."

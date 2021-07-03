@@ -59,8 +59,8 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
 	*/
 	
-    int (*KernelBinFile)(BLOCKINFO*, void*) = ((__attribute__((ms_abi)) int (*)(BLOCKINFO*, void*) ) &loader[262]);
-    int g = KernelBinFile(&bi, 0);
+    int (*KernelBinFile)(int, BLOCKINFO*) = ((__attribute__((ms_abi)) int (*)(int, BLOCKINFO*) ) &loader[262]);
+    int g = KernelBinFile(0, &bi);
     
 	SetColor(EFI_GREEN);
 	
