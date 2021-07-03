@@ -13,7 +13,7 @@ endif
 all: BOOTX64.EFI loader.bin
 
 %.o: %.c
-	$(CC) $(CFLAGS) -ffreestanding -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 BOOTX64.EFI: efimain.o
 	$(CC) $(CFLAGS) -nostdlib -shared -Wl,-dll -Wl,--subsystem,10 -e efi_main $^ -o $@
