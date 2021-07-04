@@ -41,7 +41,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 
 	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	
-	bi.MagicNumber = 3456;
+	bi.MagicNumber = 31337;
 	
 	// TODO : Setup and grab address of memory MAP
 	
@@ -62,16 +62,15 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     int (*KernelBinFile)(int, BLOCKINFO*) = ((__attribute__((ms_abi)) int (*)(int, BLOCKINFO*) ) &loader[262]);
     int g = KernelBinFile(0, &bi);
     
-	SetColor(EFI_GREEN);
-	
+	SetTextPosition(70, 24);
     UINT16 tmp[8];
     itoa(g, tmp, 10);
-    Print(L"\r\n\r\nThe returned number is : ");
     SetColor(EFI_LIGHTMAGENTA);
     Print(tmp);
 
+    SetTextPosition(5, 24);
     SetColor(EFI_YELLOW);
-	Print(L"\r\n\r\nQ to quit | R to Reboot");
+	Print(L"Q to quit | R to Reboot");
 
     while(1)
     {
