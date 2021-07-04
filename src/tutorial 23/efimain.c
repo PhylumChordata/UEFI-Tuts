@@ -75,9 +75,8 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     while(1)
     {
 		Delay1();
-		
-		EFI_STATUS Status = CheckKey();
-		if(Status == EFI_SUCCESS)
+
+		if(CheckKey() == EFI_SUCCESS)
 		{
 			if(GetKey('q') == 1)
 			{
@@ -92,8 +91,6 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 		}
 
 	}
-
-    COLD_REBOOT();
 
     // We should not make it to this point.
     return EFI_SUCCESS;
