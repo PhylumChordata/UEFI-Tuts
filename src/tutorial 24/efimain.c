@@ -20,8 +20,6 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 
 	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	
-	bi.MagicNumber = 31337;
-	
 	// TODO : Setup and grab address of memory MAP
 	
     UINTN                  MemoryMapSize = 0;
@@ -37,6 +35,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
 	
     void (*KernelBinFile)(int, BLOCKINFO*) = ((__attribute__((ms_abi)) void (*)(int, BLOCKINFO*) ) &loader[262]);
+	
     KernelBinFile(0, &bi);
     
     // We should not make it to this point.

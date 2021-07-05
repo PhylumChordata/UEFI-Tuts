@@ -237,6 +237,7 @@ void InitializeGOP()
     // This is used instead of the VGA interface.
     SystemTable->BootServices->LocateProtocol(&EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID, 0, (void**)&gop);
 	
+	bi.MagicNumber        = 31337;
     bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
     bi.BufferSize         = gop->Mode->FrameBufferSize;
     bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
