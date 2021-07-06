@@ -1,5 +1,10 @@
 # Step by Step Tutorials on how to use the UEFI for OS Development from scratch
 
+![GitHub stars](https://img.shields.io/github/stars/ThatOSDev/UEFI-Tuts?style=social)
+![GitHub forks](https://img.shields.io/github/forks/ThatOSDev/UEFI-Tuts?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/ThatOSDev/UEFI-Tuts?style=social)
+![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)
+
 # NOTES  
 - THE TUTORIALS ON YOUTUBE ARE WINDOWS BASED, BUT CODE SHOULD WORK IN LINUX AND MAC. 
 
