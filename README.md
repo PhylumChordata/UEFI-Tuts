@@ -63,12 +63,13 @@
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
+	* Dynamic Entry Point ( 8664 / ELF )  
 	* Query Supported Resolutions  
-    * Change Resolution  
+	* Change Resolution  
 	* Reading Raw Sectors from Drive  
 	* Writing Raw Sectors to Drive  
-    * Print String Part 2  
-    * PCI  
+	* Print String Part 2  
+	* PCI  
 	* Get File Info	 
 	* Format and Partition drive with the EFI Environment  
 	* Operating System Installation with just the EFI Environment  
