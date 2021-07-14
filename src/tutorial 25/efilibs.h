@@ -196,7 +196,7 @@ void readFile(CHAR16* FileName)
 		}
 
 		SetColor(EFI_LIGHTCYAN);    
-		Print(L"\r\nFile Signature\r\n");
+		Print(L"\r\nDynamic File Signature\r\n");
 		SetColor(EFI_LIGHTRED);    
 		UINT8* test1 = (UINT8*)OSBuffer_Handle;
 		
@@ -215,6 +215,7 @@ void readFile(CHAR16* FileName)
 		if(p1 == 100 && p2 == 134)
 		{
 			Print(L"BINARY - 8664 Signature\r\n");
+			SetColor(EFI_WHITE);
 			test1+=37;
 			p1 = *test1;
 			test1+=1;
@@ -239,7 +240,9 @@ void readFile(CHAR16* FileName)
 				
 				itoa(p4, s, 16);
 				Print(s);
+				SetColor(EFI_BROWN); 
 				Print(L"  \r\n\r\nENTRY POINT : ");
+				SetColor(EFI_GREEN); 
 				
                 ENTRY_POINT = (p4 << 24) | (p3 << 16) | (p2 << 8) | p1 ;
 				
@@ -251,7 +254,7 @@ void readFile(CHAR16* FileName)
 		else if(p2 == 69 && p3 == 76 && p4 == 70)
 		{
 			Print(L"ELF - 45 4C 46 Signature\r\n");
-			Print(L"This is not working........ YET.");
+			Print(L"Add your own code + the ELF Header file to make this work.");
 		}
 		
         closeFile(FileHandle);

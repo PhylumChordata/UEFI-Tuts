@@ -85,3 +85,5 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
 ![Current Progress](progress6.png)  
 
 ![Current Progress](progress7.png)  
+
+![Current Progress](progress8.png) 
