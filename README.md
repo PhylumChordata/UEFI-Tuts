@@ -5,8 +5,6 @@
 ![GitHub watchers](https://img.shields.io/github/watchers/ThatOSDev/UEFI-Tuts?style=social)  
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
-# FOUND BUG, WILL ADD EXTRA YOUTUBE VIDEO TO EXPLAIN WITH THE CORRECTED CODE
-
 # NOTES  
 - THE TUTORIALS ON YOUTUBE ARE WINDOWS BASED, BUT CODE SHOULD WORK IN LINUX AND MAC. 
 
