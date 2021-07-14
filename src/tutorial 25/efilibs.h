@@ -23,31 +23,26 @@ unsigned long long strlen(const char* str)
 
 void SetTextPosition(UINT32 Col, UINT32 Row)
 {
-    // Sets the Column and Row of the text screen cursor position.
     SystemTable->ConOut->SetCursorPosition(SystemTable->ConOut, Col, Row);
 }
 
 void ResetScreen()
 {
-    // This resets the whole console ( A.K.A. your display screen ) interface.
     SystemTable->ConOut->Reset(SystemTable->ConOut, 1);
 }
 
 void ClearScreen()
 {
-    // This clears the screen buffer, but does not reset it.
     SystemTable->ConOut->ClearScreen(SystemTable->ConOut);
 }
 
 void SetColor(UINTN Attribute)
 {
-    // We set the color for the text output.
     SystemTable->ConOut->SetAttribute(SystemTable->ConOut, Attribute);
 }
 
 void Print(CHAR16* str)
 {
-    // Text Output  ( A.K.A. ConOut is Console Out )
     SystemTable->ConOut->OutputString(SystemTable->ConOut, str);
 }
 
@@ -65,7 +60,6 @@ BLOCKINFO bi;
 
 void InitializeFILESYSTEM()
 {
-    // To load a file, you must have a file system. EFI takes advantage of the FAT32 file system.
     EFI_LOADED_IMAGE_PROTOCOL *LoadedImage;
 	EFI_DEVICE_PATH_PROTOCOL *DevicePath;
 	
@@ -177,6 +171,8 @@ void itoa(unsigned long int n, unsigned short int* buffer, int basenumber)
 	}
 }
 
+unsigned int ENTRY_POINT;
+
 void readFile(CHAR16* FileName)
 {
 	// We get the file size, allocate memory for it,
@@ -220,20 +216,42 @@ void readFile(CHAR16* FileName)
 		{
 			Print(L"BINARY - 8664 Signature\r\n");
 			test1+=37;
-			for(int m = 0; m < 4; m++)
-			{
-				p1 = *test1;
+			p1 = *test1;
+			test1+=1;
+			p2 = *test1;
+			test1+=1;
+			p3 = *test1;
+			test1+=1;
+			p4 = *test1;
+
 				UINT16 s[2];
 				itoa(p1, s, 16);
 				Print(s);
 				Print(L"  ");
-				test1++;
-			}
+				
+				itoa(p2, s, 16);
+				Print(s);
+				Print(L"  ");
+				
+				itoa(p3, s, 16);
+				Print(s);
+				Print(L"  ");
+				
+				itoa(p4, s, 16);
+				Print(s);
+				Print(L"  \r\n\r\nENTRY POINT : ");
+				
+                ENTRY_POINT = (p4 << 24) | (p3 << 16) | (p2 << 8) | p1 ;
+				
+				UINT16 s2[5];
+				itoa(ENTRY_POINT, s2, 10);
+				Print(s2);
+				Print(L"  ");
 		}
 		else if(p2 == 69 && p3 == 76 && p4 == 70)
 		{
 			Print(L"ELF - 45 4C 46 Signature\r\n");
-			Print(L"This is not working, YET.");
+			Print(L"This is not working........ YET.");
 		}
 		
         closeFile(FileHandle);

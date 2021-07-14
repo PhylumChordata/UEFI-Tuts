@@ -33,11 +33,12 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
     SystemTable->BootServices->AllocatePool(2, MemoryMapSize, (void **)&MemoryMap);
     SystemTable->BootServices->GetMemoryMap(&MemoryMapSize, MemoryMap, &MapKey, &DescriptorSize, &DescriptorVersion);
     SystemTable->BootServices->ExitBootServices(ImageHandle, MapKey);
-	
-    void (*KernelBinFile)(int, BLOCKINFO*) = ((__attribute__((ms_abi)) void (*)(int, BLOCKINFO*) ) &loader[260]);
+
+    void (*KernelBinFile)(int, BLOCKINFO*) = ((__attribute__((ms_abi)) void (*)(int, BLOCKINFO*) ) &loader[ENTRY_POINT]);
 	
     KernelBinFile(0, &bi);
     
+while(1){}
     // We should not make it to this point.
     return EFI_SUCCESS;
 }
