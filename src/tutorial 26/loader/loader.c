@@ -38,6 +38,7 @@ typedef struct BLOCKINFO
     uint32_t               ScreenWidth;
     uint32_t               ScreenHeight;
     uint32_t               PixelsPerScanLine;
+	uint64_t*              LoaderFileSize;
 	EFI_MEMORY_DESCRIPTOR* MMap;
 	uint64_t               MMapSize;
 	uint64_t               MMapDescriptorSize;

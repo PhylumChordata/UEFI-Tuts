@@ -12,6 +12,7 @@ EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
 EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *Volume;
 EFI_FILE_PROTOCOL* RootFS;
 void* OSBuffer_Handle;
+UINT64* LoaderFileSize;
 
 unsigned long long strlen(const char* str)
 {
@@ -53,6 +54,7 @@ typedef struct BLOCKINFO
     unsigned int           ScreenWidth;
     unsigned int           ScreenHeight;
     unsigned int           PixelsPerScanLine;
+	unsigned long long*    LoaderFileSize;
 	EFI_MEMORY_DESCRIPTOR* MMap;
 	unsigned long long     MMapSize;
 	unsigned long long     MMapDescriptorSize;
@@ -196,6 +198,8 @@ void readFile(CHAR16* FileName)
 			SetColor(EFI_BROWN);
 			Print(L"Reading File FAILED\r\n");
 		}
+		
+		LoaderFileSize = FileSize;
 
 		SetColor(EFI_LIGHTCYAN);    
 		Print(L"\r\nDynamic File Signature\r\n");

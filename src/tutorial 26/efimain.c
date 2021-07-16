@@ -155,10 +155,20 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	Print(snum);
 	Print(L"\r\n\r\n");
 	
+	UINT8* loader = (UINT8*)OSBuffer_Handle;
+	
+	bi.LoaderFileSize = LoaderFileSize;
+	
+	SetColor(EFI_WHITE);
+    Print(L"LOADER FILE SIZE : ");
+    itoa(*(unsigned long int*)bi.LoaderFileSize, GOPINFO, DECIMAL);
+    SetColor(EFI_YELLOW);
+    Print(GOPINFO);
+	SetColor(EFI_CYAN);
+    Print(L" Bytes\r\n\r\n");
+
 	SetColor(EFI_WHITE);
     Print(L"Loading ThatOS64 ...");
-	
-	UINT8* loader = (UINT8*)OSBuffer_Handle;
 	
     UINTN                  MemoryMapSize = 0;
     EFI_MEMORY_DESCRIPTOR  *MemoryMap;
