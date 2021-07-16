@@ -1,0 +1,22 @@
+// UEFI From Scratch Tutorials - ThatOSDev ( 2021 )
+// https://github.com/ThatOSDev/UEFI-Tuts
+
+#include "efi.h"
+#include "efilibs.h"
+
+EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
+{
+    ImageHandle = IH;
+    SystemTable = ST;
+	
+	InitializeSystem();
+	
+	SetColor(EFI_WHITE);
+	
+    Print(L"???? ... \r\n\r\n");
+    
+   while(1){__asm__ ("hlt");}
+	
+    // We should not make it to this point.
+    return EFI_SUCCESS;
+}
