@@ -79,6 +79,22 @@ unsigned short int* GetDayExtension(unsigned short m)
         {
             return (unsigned short int*)L"rd";
         }
+		case 21:
+		{
+			return (unsigned short int*)L"st";
+		}
+		case 22:
+		{
+			return (unsigned short int*)L"nd";
+		}
+	    case 23:
+		{
+			return (unsigned short int*)L"rd";
+		}
+		case 31:
+		{
+			return (unsigned short int*)L"st";
+		}
     }
     return (unsigned short int*)L"th";
 }
