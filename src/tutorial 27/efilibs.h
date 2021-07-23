@@ -58,7 +58,7 @@ typedef struct BLOCKINFO
 	EFI_MEMORY_DESCRIPTOR* MMap;
 	unsigned long long     MMapSize;
 	unsigned long long     MMapDescriptorSize;
-} BLOCKINFO;
+} __attribute__((__packed__)) BLOCKINFO;
 
 BLOCKINFO bi;
 

@@ -42,7 +42,7 @@ typedef struct BLOCKINFO
 	EFI_MEMORY_DESCRIPTOR* MMap;
 	uint64_t               MMapSize;
 	uint64_t               MMapDescriptorSize;
-} BLOCKINFO;
+} __attribute__((__packed__)) BLOCKINFO;
 
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
 void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli);
