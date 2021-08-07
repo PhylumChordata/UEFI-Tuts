@@ -13,7 +13,7 @@ EFI_STATUS efi_main(EFI_HANDLE IH, EFI_SYSTEM_TABLE *ST)
 	
 	SetColor(EFI_WHITE);
 	
-    Print(L"???? ... \r\n\r\n");
+    Print(L"You may now shutdown computer\r\n\r\n");
     
    while(1){__asm__ ("hlt");}
 	

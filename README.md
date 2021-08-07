@@ -60,13 +60,11 @@
 	- EXITBOOTSERVICES &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 28](https://www.youtube.com/watch?v=EghNm2dDF8c)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2024)
 	- DYNAMIC ENTRY POINT (8664/ELF) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 29](https://www.youtube.com/watch?v=-wJsAhUIu2k)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2025)
 	- TRANSFER MMAP AND FILE SIZE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 30](https://www.youtube.com/watch?v=KEaKvJU2bTk)  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2026)
-	- UNKNOWN YET &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 31]  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2027)
+	- QUERY AND SET SCREEN MODE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --- [YOUTUBE 31]  ---  [SOURCE CODE](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/src/tutorial%2027)
 
 More Tuts Coming soon... ( **NOTE : The order of this list is subject to change** )  
 
 	* PCI / ACHI ( RSDP ) 
-	* Query Supported Resolutions  
-	* Change Resolution  
 	* Reading Raw Sectors from Drive  
 	* Writing Raw Sectors to Drive  
 	* Print String Part 2  
@@ -89,3 +87,5 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
 ![Current Progress](progress7.png)  
 
 ![Current Progress](progress8.png) 
+
+![Current Progress](progress9.png) 

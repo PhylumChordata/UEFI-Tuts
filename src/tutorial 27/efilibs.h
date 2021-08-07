@@ -318,17 +318,137 @@ void WriteToFile(char* buf, CHAR16* FileName)
 	}
 }
 
+void HitAnyKey()
+{
+    // This clears the keyboard buffer.
+    SystemTable->ConIn->Reset(SystemTable->ConIn, 1);
+
+    // We setup the struct to take keyboard input.
+    EFI_INPUT_KEY Key;
+
+    // In a while loop to see if the keyboard has a key stroke in the buffer.
+    while((SystemTable->ConIn->ReadKeyStroke(SystemTable->ConIn, &Key)) == EFI_NOT_READY);
+}
+
 void InitializeGOP()
 {
     // We initialize the Graphics Output Protocol.
     // This is used instead of the VGA interface.
     SystemTable->BootServices->LocateProtocol(&EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID, 0, (void**)&gop);
 	
-    bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
-    bi.BufferSize         = gop->Mode->FrameBufferSize;
-    bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
-    bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
-    bi.PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
+	UINT32 NewNativeMode = 9000000;
+	UINTN  GOPSizeOfInfo      = gop->Mode->SizeOfInfo;
+	UINT32 NativeMode         = gop->Mode->Mode;
+	UINT32 MaxResolutionModes = gop->Mode->MaxMode;
+	
+	SetColor(EFI_WHITE);
+	UINT16 tmp[4];
+    itoa(NativeMode, tmp, 10);
+    Print(L"Current Native Mode : ");
+    SetColor(EFI_YELLOW);
+    Print(tmp);
+	
+	SetColor(EFI_WHITE);
+	itoa(gop->Mode->Info->HorizontalResolution, tmp, 10);
+    Print(L"    WIDTH : ");
+    SetColor(EFI_LIGHTMAGENTA);
+    Print(tmp);
+	
+	SetColor(EFI_WHITE);
+	itoa(gop->Mode->Info->VerticalResolution, tmp, 10);
+    Print(L"    HEIGHT : ");
+    SetColor(EFI_LIGHTMAGENTA);
+    Print(tmp);
+	
+	SetColor(EFI_BROWN);
+	Print(L"\r\nChecking Graphic Modes ... \r\n");
+	SetColor(EFI_CYAN);
+	EFI_STATUS Status;
+	for (UINT32 i = 0; i < MaxResolutionModes; i++)
+	{
+		EFI_GRAPHICS_OUTPUT_MODE_INFORMATION *info;
+        Status = gop->QueryMode(gop, i, &GOPSizeOfInfo, &info);
+		if(Status == EFI_SUCCESS)
+		{
+			SetColor(EFI_WHITE);
+			itoa(i, tmp, 10);
+			Print(L"Current Native Mode : ");
+			SetColor(EFI_YELLOW);
+			Print(tmp);
+			
+			SetColor(EFI_WHITE);
+			itoa(info->HorizontalResolution, tmp, 10);
+			Print(L"    WIDTH : ");
+			SetColor(EFI_LIGHTMAGENTA);
+			Print(tmp);
+			
+			SetColor(EFI_WHITE);
+			itoa(info->VerticalResolution, tmp, 10);
+			Print(L"    HEIGHT : ");
+			SetColor(EFI_LIGHTMAGENTA);
+			Print(tmp);
+			Print(L"\r\n");
+			
+			if((info->HorizontalResolution == 1920) && (info->VerticalResolution == 1080))
+			{
+				NewNativeMode = i;
+			}
+		}
+	}
+	if(NewNativeMode == 9000000)
+	{
+		SetColor(EFI_LIGHTRED);
+		Print(L"WARNING : Unable to find 1920 x 1080 MODE !\r\nUsing Default GOP.");
+		bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+		bi.BufferSize         = gop->Mode->FrameBufferSize;
+		bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
+		bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
+		bi.PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
+	} else {
+		SetColor(EFI_GREEN);
+		Print(L"Hit Any Key to Change Resolution to 1920 x 1080\r\n");
+		HitAnyKey();
+		Status = gop->SetMode(gop, NewNativeMode);
+		if(Status == EFI_SUCCESS)
+		{
+			bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+			bi.BufferSize         = gop->Mode->FrameBufferSize;
+			bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
+			bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
+			bi.PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
+			
+			ResetScreen();
+			SetColor(EFI_YELLOW);
+			Print(L"CONGRATS ! You are now using a screen resolution of ");
+			
+			itoa(bi.ScreenWidth, tmp, 10);
+			SetColor(EFI_LIGHTMAGENTA);
+			Print(tmp);
+			
+			SetColor(EFI_WHITE);
+			Print(L" x ");
+			
+			itoa(bi.ScreenHeight, tmp, 10);
+			SetColor(EFI_LIGHTMAGENTA);
+			Print(tmp);
+			
+			SetColor(EFI_LIGHTCYAN);
+			Print(L"\r\nCURRENT MODE : ");
+			itoa(NewNativeMode, tmp, 10);
+			SetColor(EFI_CYAN);
+			Print(tmp);
+		} else {
+			SetColor(EFI_LIGHTRED);
+			Print(L"WARNING : Unable to find 1920 x 1080 MODE !\r\nUsing Default GOP.");
+			bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+			bi.BufferSize         = gop->Mode->FrameBufferSize;
+			bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
+			bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
+			bi.PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
+		}
+	}
+	
+	Print(L"\r\n");
 }
 
 void InitializeSystem()
