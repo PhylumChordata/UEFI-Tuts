@@ -101,6 +101,7 @@ unsigned short int* GetDayExtension(unsigned short m)
 
 typedef long long INTN;
 
+// From the GNU-EFI
 INTN RtCompareGuid(EFI_GUID* Guid1, EFI_GUID* Guid2)
 {
     INT32 *g1, *g2, r;
