@@ -67,8 +67,6 @@ More Tuts Coming soon... ( **NOTE : The order of this list is subject to change*
 
 	* Reading Raw Sectors from Drive  
 	* Writing Raw Sectors to Drive  
-	* Print String Part 2  
-	* Get File Info	 
 	* Format and Partition drive with the EFI Environment  
 	* Operating System Installation with just the EFI Environment  
 
