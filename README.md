@@ -18,6 +18,7 @@
 
 
 # BUILD INSTRCUTIONS  
+**Linux, Mac, Windows**  
 [https://github.com/ThatOSDev/UEFI-Tuts/tree/master/BUILD.md](https://github.com/ThatOSDev/UEFI-Tuts/tree/master/BUILD.md)  
 
 # SOCIAL MEDIA LINK
