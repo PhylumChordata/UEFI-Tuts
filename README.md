@@ -14,7 +14,7 @@
 
 - **NOTICE** : The 40 meg file is still there, and can now be used by MAC and Linux users. The 256 meg file is in the ZIP inside of the HOLD folder for those who want a larger drive.hdd file to play with. All Operating System users CAN use that size file too.  
 
-- **The IMAGECREATOR program has been removed.**  
+- **The original HDD IMAGECREATOR software has been removed. It has been replaced with the new tool coded by Hamid Nazari.**  
 
 
 # BUILD INSTRCUTIONS  
