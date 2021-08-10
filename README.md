@@ -6,6 +6,8 @@
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
 # NOTES  
+- New Tool coming soon to create an EFI based GPT Partitioned virtual HDD file. Big THANK YOU to [Hamid Nazari](https://github.com/hamidnazari/ThatDiskCreator) for his hard work on creating this tool for us. The source code should work on all platforms and will make OS Development that much easier.  
+
 - THE TUTORIALS ON YOUTUBE ARE WINDOWS BASED, BUT CODE SHOULD WORK IN LINUX AND MAC. 
 
 - **UEFI 2.9 Specs PDF** : https://uefi.org/specifications  
@@ -20,7 +22,6 @@
 
 # SOCIAL MEDIA LINK
 **YOUTUBE** : https://www.youtube.com/channel/UCouyC9D6WFBwc24sqdkS-jw  
-**DISCORD** : ThatOSDev#5516
 
 # READ THIS !!!
 - THINGS YOU SHOULD KNOW BEFORE STARTING OS DEVELOPMENT  
