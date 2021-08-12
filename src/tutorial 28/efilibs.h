@@ -274,6 +274,9 @@ void readFile(CHAR16* FileName)
 		{
 			Print(L"ELF - 45 4C 46 Signature\r\n");
 			Print(L"Add your own code + the ELF Header file to make this work.");
+		} else {
+			ENTRY_POINT = 0;
+			Print(L"RAW FILE - No Signature\r\nEntry Point is set to 0.\r\n");
 		}
 		
         closeFile(FileHandle);
