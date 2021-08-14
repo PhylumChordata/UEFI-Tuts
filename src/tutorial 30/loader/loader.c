@@ -24,11 +24,11 @@ typedef struct GRAPHICS_COLOR_PIXEL
 // From the UEFI PDF Page 170
 typedef struct EFI_MEMORY_DESCRIPTOR
 {
-	uint32_t  type;
-	uint64_t* PhysicalAddress;
-	uint64_t* VirtualAddress;
-	uint64_t  NumberOfPages;
-	uint64_t  Attributes;
+    uint32_t  type;
+    uint64_t* PhysicalAddress;
+    uint64_t* VirtualAddress;
+    uint64_t  NumberOfPages;
+    uint64_t  Attributes;
 } EFI_MEMORY_DESCRIPTOR;
 
 typedef struct BLOCKINFO
@@ -38,11 +38,11 @@ typedef struct BLOCKINFO
     uint32_t               ScreenWidth;
     uint32_t               ScreenHeight;
     uint32_t               PixelsPerScanLine;
-	uint64_t               LoaderFileSize;
-	EFI_MEMORY_DESCRIPTOR* MMap;
-	uint64_t               MMapSize;
-	uint64_t               MMapDescriptorSize;
-	uint64_t*              rsdp;
+    uint64_t               LoaderFileSize;
+    EFI_MEMORY_DESCRIPTOR* MMap;
+    uint64_t               MMapSize;
+    uint64_t               MMapDescriptorSize;
+    uint64_t*              rsdp;
 } __attribute__((__packed__)) BLOCKINFO;
 
 GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
