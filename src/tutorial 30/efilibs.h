@@ -80,7 +80,7 @@ int strcmp(const char* a, const char* b)
 
 typedef struct BLOCKINFO
 {
-    unsigned long long*    BaseAddress;
+    unsigned long long     BaseAddress;
     unsigned long long     BufferSize;
     unsigned int           ScreenWidth;
     unsigned int           ScreenHeight;
@@ -347,6 +347,8 @@ void InitializeGOP()
 			if((info->HorizontalResolution == 1920) && (info->VerticalResolution == 1080))
 			{
 				NewNativeMode = i;
+				SetColor(EFI_LIGHTGREEN);
+				Print(L"Setting 1920 x 1080 MODE ... \r\n");
 			}
 		}
 	}
@@ -354,7 +356,7 @@ void InitializeGOP()
 	{
 		SetColor(EFI_LIGHTRED);
 		Print(L"WARNING : Unable to find 1920 x 1080 MODE !\r\nUsing Default GOP.\r\n");
-		bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+		bi.BaseAddress        = gop->Mode->FrameBufferBase;
 		bi.BufferSize         = gop->Mode->FrameBufferSize;
 		bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
 		bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
@@ -363,15 +365,17 @@ void InitializeGOP()
 		Status = gop->SetMode(gop, NewNativeMode);
 		if(Status == EFI_SUCCESS)
 		{
-			bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+			bi.BaseAddress        = gop->Mode->FrameBufferBase;
 			bi.BufferSize         = gop->Mode->FrameBufferSize;
 			bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
 			bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;
 			bi.PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
+			SetColor(EFI_LIGHTGREEN);
+			Print(L"1920 x 1080 MODE set.\r\n");
 		} else {
 			SetColor(EFI_LIGHTRED);
 			Print(L"WARNING : Unable to find 1920 x 1080 MODE !\r\nUsing Default GOP.\r\n");
-			bi.BaseAddress        = (void*)gop->Mode->FrameBufferBase;
+			bi.BaseAddress        = gop->Mode->FrameBufferBase;
 			bi.BufferSize         = gop->Mode->FrameBufferSize;
 			bi.ScreenWidth        = gop->Mode->Info->HorizontalResolution;
 			bi.ScreenHeight       = gop->Mode->Info->VerticalResolution;

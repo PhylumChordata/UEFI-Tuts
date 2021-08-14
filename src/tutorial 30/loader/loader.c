@@ -33,7 +33,7 @@ typedef struct EFI_MEMORY_DESCRIPTOR
 
 typedef struct BLOCKINFO
 {
-    uint64_t*              BaseAddress;
+    uint64_t               BaseAddress;
     uint64_t               BufferSize;
     uint32_t               ScreenWidth;
     uint32_t               ScreenHeight;
@@ -45,30 +45,21 @@ typedef struct BLOCKINFO
     uint64_t*              rsdp;
 } __attribute__((__packed__)) BLOCKINFO;
 
-GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color);
-void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli);
+BLOCKINFO* biStruct __attribute__ ((section (".text")));
+
+void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, uint32_t c);
 
 void main(BLOCKINFO* bi)
 {
-	BLOCKINFO* biStruct = bi;
+	biStruct = bi;
+	biStruct->BaseAddress = (bi->BaseAddress - 128);   // Somehow this fixes it.
 	
-	GRAPHICS_COLOR_PIXEL* GraphicsColor = SetGraphicsColor(ORANGE);
-	CreateBufferFilledBox(1, 1, 150, 150, GraphicsColor, biStruct);
+	CreateBufferFilledBox(0, 0, 150, 150, ORANGE);
 	
 	while(1){}
 }
 
-GRAPHICS_COLOR_PIXEL* SetGraphicsColor(uint32_t color)
-{
-    GRAPHICS_COLOR_PIXEL* GColor = ((void*)0);
-    GColor->Alpha    = color >> 24;
-    GColor->Red      = color >> 16;
-    GColor->Green    = color >> 8;
-    GColor->Blue     = color;
-    return GColor;
-}
-
-void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, GRAPHICS_COLOR_PIXEL* gc, BLOCKINFO* bli)
+void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h, uint32_t c)
 {
     uint32_t x;
     uint32_t y      = yPos;
@@ -79,7 +70,7 @@ void CreateBufferFilledBox(uint32_t xPos, uint32_t yPos, uint32_t w, uint32_t h,
     {
         for(x = xPos; x <= width; x++)
         {
-            *(x + (y * bli->PixelsPerScanLine) + (uint32_t*)(bli->BaseAddress)) = *(uint32_t*)gc;
+            *(x + (y * biStruct->PixelsPerScanLine) + (uint32_t*)(biStruct->BaseAddress)) = c;
         }
     }
 }
