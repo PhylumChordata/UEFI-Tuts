@@ -7,7 +7,7 @@
 #define NULL (void*)0
 #define DECIMAL 10
 #define HEX     16
-#define true    1
-#define false   0
+
+// The true / false in the video has been moved to stdint.h header file.
 
 #endif // CLIBS_H
