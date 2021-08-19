@@ -6,6 +6,7 @@
 ![GitHub followers](https://img.shields.io/github/followers/ThatOSDev?style=social)  
 
 # NOTES  
+- WARNING - This code is for teaching purposes only. It is not written for professional use. Some code is written in order to speed up teaching, and thus is not properly coded. You should rewrite the code for your own professional use.  
 - For video 33 ( which is Code 29 on Github ), I am using [FASM](https://flatassembler.net/). FASM is a better assembler in my opinion.  It correctly generates code for the GDT, where as with NASM it kept generating the wrong code.  
 - New open source Tool **coming soon** to create an EFI based GPT Partitioned virtual HDD file. Big THANK YOU to [Hamid Nazari](https://github.com/hamidnazari/ThatDiskCreator) for his hard work on creating this tool for us. The source code should work on all platforms and will make OS Development that much easier.  
 
